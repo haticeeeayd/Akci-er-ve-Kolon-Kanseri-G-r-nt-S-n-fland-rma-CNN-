@@ -2,7 +2,7 @@
 
 Bu proje, histopatolojik mikroskop görüntülerinden akciğer ve kolon kanseri sınıflarını Konvolüsyonel Sinir Ağı (CNN) ile otomatik olarak sınıflandırır. Model; Keras/TensorFlow ile yazıldı, veri artırma (data augmentation), EarlyStopping ve ReduceLROnPlateau gibi düzenlileştirme/kontrol mekanizmaları kullanıldı.
 
-Son deneyimizde test doğruluğu ~%97 elde edildi.
+Son deneyimizde test doğruluğu ~%95 elde edildi.
 
 # Akciğer ve Kolon Kanseri Histopatolojik Görüntü Sınıflandırması (CNN)
 
