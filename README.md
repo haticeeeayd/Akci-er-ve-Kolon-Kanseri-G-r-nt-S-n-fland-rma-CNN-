@@ -49,20 +49,7 @@ Hassasiyet ve Duyarlılığın harmonik ortalamasıdır. Precision ve Recall ara
 Bu metrikleri eğitim sonunda `classification_report` ve `confusion_matrix` ile görselleştirip her sınıf için ayrı ayrı Precision, Recall, F1-Score değerlerini inceliyorum. Böylece modelin hangi sınıflarda iyi, hangi sınıflarda daha zayıf performans gösterdiğini net bir şekilde görebiliyorum.
 
 
-##  Sonuçlar
 
-###  Confusion Matrix & Classification Report
-Modelin test seti üzerindeki performansı:
-
-| Sınıf      | Precision | Recall | F1-Score |
-|-----------|-----------|--------|----------|
-| colon_aca | 1.00      | 0.99   | 0.99 |
-| colon_n   | 1.00      | 1.00   | 1.00 |
-| lung_aca  | 0.90      | 0.96   | 0.92 |
-| lung_n    | 1.00      | 1.00   | 1.00 |
-| lung_scc  | 0.95      | 0.90   | 0.92 |
-
-**Genel doğruluk (Accuracy): %97**
 
 ---
 
