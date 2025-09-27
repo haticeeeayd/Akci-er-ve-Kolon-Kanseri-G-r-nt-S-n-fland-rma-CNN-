@@ -2,7 +2,7 @@
 
 Bu proje, histopatolojik mikroskop görüntülerinden akciğer ve kolon kanseri sınıflarını Konvolüsyonel Sinir Ağı (CNN) ile otomatik olarak sınıflandırır. Model; Keras/TensorFlow ile yazıldı, veri artırma (data augmentation), EarlyStopping ve ReduceLROnPlateau gibi düzenlileştirme/kontrol mekanizmaları kullanıldı.
 
-Son deneyimizde test doğruluğu ~%95 elde edildi.
+Overifitting sorunu çözülemedi
 
 # Akciğer ve Kolon Kanseri Histopatolojik Görüntü Sınıflandırması (CNN)
 
@@ -25,18 +25,29 @@ https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathologica
 ---
 
 
+## Model Değerlendirme Metrikleri
 
-##  Metrikler
-Projenizde gerçekleştirdiğimiz çalışma sonucunda aşağıdaki metrikler elde edilmiştir.  
-Bu metrikler, modelin yalnızca kod seviyesinde değil, anlam olarak da doğru bir şekilde çalıştığını göstermektedir.  
+Modelin eğitim sürecinde yalnızca kayıp (loss) değerine bakmak yeterli değil; modelin gerçekten doğru tahminler yapıp yapmadığını anlamak için farklı değerlendirme metriklerine de bakıyorum. Bu metrikler sayesinde modelin performansını daha somut ve yorumlanabilir hale getiriyorum.
 
+### Kullanılan Temel Metrikler
 
-- Eğitim ve doğrulama süresince **Accuracy** ve **Loss** grafikleri incelenmiştir.
-- Modelin overfitting yapmadığı, validation accuracy değerinin yüksek olduğu gözlenmiştir.
-- Confusion Matrix ve Classification Report yardımıyla sınıf bazında Precision, Recall ve F1-Score değerlendirilmiştir.
-- Özellikle **lung_aca** ve **lung_scc** sınıflarında az miktarda karışıklık gözlense de genel başarı yüksektir (%97 accuracy).
+**Doğruluk (Accuracy):**  
+En temel ve en çok kullanılan metriktir. Doğru sınıflandırılan örneklerin toplam tahminlere oranıdır.  
+Modelin genel başarısını hızlıca görmek için kullanıyorum.
 
----
+**Hassasiyet (Precision):**  
+Modelin pozitif olarak sınıflandırdığı örneklerden ne kadarının gerçekten pozitif olduğunu ölçer.  
+Yanlış pozitiflerin maliyetli olduğu senaryolarda önemlidir. (Bu projede yanlış sınıfa atanan akciğer görsellerini azaltmak için önemli.)
+
+**Duyarlılık (Recall):**  
+Gerçekte pozitif olan örneklerin ne kadarının doğru bir şekilde pozitif sınıflandırıldığını ölçer.  
+Yanlış negatiflerin maliyetli olduğu durumlarda önemlidir. (Örneğin bir kanser görüntüsünü "normal" sanmak istemeyiz.)
+
+**F1-Skor:**  
+Hassasiyet ve Duyarlılığın harmonik ortalamasıdır. Precision ve Recall arasında bir denge sunar ve dengesiz veri setlerinde güvenilir bir metrik sağlar.
+
+Bu metrikleri eğitim sonunda `classification_report` ve `confusion_matrix` ile görselleştirip her sınıf için ayrı ayrı Precision, Recall, F1-Score değerlerini inceliyorum. Böylece modelin hangi sınıflarda iyi, hangi sınıflarda daha zayıf performans gösterdiğini net bir şekilde görebiliyorum.
+
 
 ##  Sonuçlar
 
@@ -62,6 +73,7 @@ Bu sayede modelin karar verirken dikkate aldığı kritik alanlar görselleştir
 ---
 
 ##  Gelecek Çalışmalar
+-Overifitting sorununun çözümü
 - Veri setine daha fazla görüntü eklenerek genelleme başarısı artırılabilir.
 - Transfer learning (ör. ResNet, EfficientNet) denenebilir.
 - Model, gerçek zamanlı bir web arayüzü ile entegre edilerek kullanılabilir hale getirilebilir.
